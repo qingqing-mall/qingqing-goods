@@ -4,14 +4,12 @@ import com.liaoyb.qingqing.goods.GoodsApp;
 import com.liaoyb.qingqing.goods.config.SecurityBeanOverrideConfiguration;
 import com.liaoyb.qingqing.goods.repository.timezone.DateTimeWrapper;
 import com.liaoyb.qingqing.goods.repository.timezone.DateTimeWrapperRepository;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.*;
@@ -21,11 +19,10 @@ import static java.lang.String.format;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Unit tests for the UTC Hibernate configuration.
+ * Integration tests for the UTC Hibernate configuration.
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest(classes = {SecurityBeanOverrideConfiguration.class, GoodsApp.class})
-public class HibernateTimeZoneTest {
+public class HibernateTimeZoneIT {
 
     @Autowired
     private DateTimeWrapperRepository dateTimeWrapperRepository;
@@ -37,7 +34,7 @@ public class HibernateTimeZoneTest {
     private DateTimeFormatter timeFormatter;
     private DateTimeFormatter dateFormatter;
 
-    @Before
+    @BeforeEach
     public void setup() {
         dateTimeWrapper = new DateTimeWrapper();
         dateTimeWrapper.setInstant(Instant.parse("2014-11-12T05:50:00.0Z"));
