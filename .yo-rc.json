@@ -1,0 +1,41 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.liaoyb.qingqing.goods",
+      "nativeLanguage": "zh-cn"
+    },
+    "jhipsterVersion": "5.8.2",
+    "applicationType": "microservice",
+    "baseName": "goods",
+    "packageName": "com.liaoyb.qingqing.goods",
+    "packageFolder": "com/liaoyb/qingqing/goods",
+    "serverPort": "8081",
+    "authenticationType": "uaa",
+    "uaaBaseName": "uaa",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": true,
+    "jwtSecretKey": "ZDE2MjU2YTBiOTg0YzAwODNlMDllMGViNGUyYWE4ZjAzODMzZmQzNmQ1M2U4YTY0ZmEwYWM2MTE5YmM1NzQ5NGFkZTg4MzQzOTRkNTRlMzNkOWIzM2JlMWJlNjEyMzIwNmUxYmEwZTQ2ZDUxOWRmZjI3ZjllM2E4ZmRhYzMzNWQ=",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "zh-cn",
+    "languages": [
+      "zh-cn"
+    ],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
