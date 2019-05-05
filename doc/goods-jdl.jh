@@ -1,0 +1,55 @@
+/** 商品分类 */
+entity GoodsCategory (qingqing_goods_category){
+	id Integer required/** 商品分类id */
+
+	parentId Integer  required/** 上级分类的编号：0表示一级分类 */
+	name String required/** 分类名称 */
+	level Integer required/** 分类级别：1->1级；2->2级 */
+	sort Integer required/** 排序 */
+	icon String required/** 图标 */
+	description String/** 描述 */
+
+	createdBy Long /** 创建者 */
+	createdDate Instant /** 创建时间 */
+	lastModifiedBy Long /** 更新者 */
+	lastModifiedDate Instant /** 最后更新时间 */
+}
+
+/** 商品 */
+entity Goods (qingqing_goods) {
+	id Long required /** 商品id */
+
+	name String required /** 商品名称 */
+	picture String required /** 商品主图 */
+	price BigDecimal required /** 价格 */
+	originalPrice BigDecimal required /** 市场价 */
+	goodsSn String required /** 货号 */
+	publishStatus Integer required /** 上架状态：1->上架、2->下架 */
+	verifyStatus Integer required /** 审核状态：0->未审核；1->审核通过；2->审核不通过 */
+	stock Integer required /** 库存 */
+	unit String required /** 单位 */
+	description String required /** 商品描述 */
+	albumPictures String required /** 画册图片，连产品图片限制为5张，以逗号分割 */
+	detailHtml String required /** 产品详情网页内容 */
+	detailMobileHtml String required /** 移动端网页详情 */
+    goodsCategoryId Integer required /** 商品分类id */
+    goodsCategoryName String required /** 商品分类名称 */
+    
+	createdBy Long /** 创建者 */
+	createdDate Instant /** 创建时间 */
+	lastModifiedBy Long /** 更新者 */
+	lastModifiedDate Instant /** 最后更新时间 */
+}
+
+
+
+// Set pagination options
+paginate Goods with pagination
+
+// Use Data Transfert Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceClass
+
+search Goods with elasticsearch

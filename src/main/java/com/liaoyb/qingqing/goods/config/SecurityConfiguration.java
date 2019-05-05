@@ -5,6 +5,7 @@ import com.liaoyb.qingqing.goods.config.oauth2.OAuth2Properties;
 import com.liaoyb.qingqing.goods.security.oauth2.OAuth2SignatureVerifierClient;
 import com.liaoyb.qingqing.goods.security.AuthoritiesConstants;
 
+import com.liaoyb.qingqing.security.QingqingUserAuthenticationConverter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.loadbalancer.RestTemplateCustomizer;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
@@ -57,7 +59,12 @@ public class SecurityConfiguration extends ResourceServerConfigurerAdapter {
 
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter(OAuth2SignatureVerifierClient signatureVerifierClient) {
-        return new OAuth2JwtAccessTokenConverter(oAuth2Properties, signatureVerifierClient);
+        OAuth2JwtAccessTokenConverter converter = new OAuth2JwtAccessTokenConverter(oAuth2Properties, signatureVerifierClient);
+        DefaultAccessTokenConverter tokenConverter = new DefaultAccessTokenConverter();
+        tokenConverter.setUserTokenConverter(new QingqingUserAuthenticationConverter());
+        converter.setAccessTokenConverter(tokenConverter);
+
+        return converter;
     }
 
     @Bean

@@ -43,9 +43,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://localhost:3306/goods?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/qingqing_goods?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull
     username: root
-    password:
+    password: root
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -65,10 +65,11 @@ spring:
       hibernate.cache.use_query_cache: false
       hibernate.generate_statistics: false
   data:
-    elasticsearch:
-      properties:
-        path:
-          home: target/elasticsearch
+    jest:
+      uri: http://192.168.33.12:9200
+  elasticsearch:
+    rest:
+      uris: http://192.168.33.12:9200
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
